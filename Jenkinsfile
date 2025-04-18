@@ -7,5 +7,11 @@ pipeline {
                 sh 'echo hello '
             }
         }
+        stage('docker') {
+            steps {
+                sh 'docker -v'
+
+            }
+        }
     }
 }
