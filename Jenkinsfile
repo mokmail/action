@@ -9,7 +9,13 @@ pipeline {
     stages {
         stage('Test'){
             steps{
-                sh "echo hello"
+                sh "docker --version"
+            }
+        }
+        stage('list containers')
+        {
+            steps{
+                sh 'docker  ps'
             }
         }
 
