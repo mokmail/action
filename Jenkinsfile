@@ -18,16 +18,16 @@ pipeline {
                 sh "docker build -t ${IMAGE_NAME} . "
             }
         }
-        // stage('stop old container'){
-        //     steps{
-        //         sh " docker rm -f ${CONTAINER_NAME} || true "
-        //     }
-        // }
-        // stage('Run container'){
-        //     steps{
-        //         sh " docker run -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${IMAGE_NAME} "
-        //     }
-        // }
+        stage('stop old container'){
+            steps{
+                sh " docker rm -f ${CONTAINER_NAME} || true "
+            }
+        }
+        stage('Run container'){
+            steps{
+                sh " docker run -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${IMAGE_NAME} "
+            }
+        }
     
     }
 }
