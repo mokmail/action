@@ -29,7 +29,7 @@ pipeline {
         // Stage 3: Build the Docker image from the Dockerfile in the current directory
         stage('Build image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME}:${pramas.TAG} ."
+                sh "docker build -t ${IMAGE_NAME}:${params.TAG} ."
                 // Builds an image with the tag defined by IMAGE_NAME
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         // Stage 4: Stop and remove any running container with the same name
         stage('stop old container') {
             steps {
-                sh "docker rm -f ${CONTAINER_NAME} || true"
+                sh "docker rm -f ${CONTAINER_NAME}:${params.TAG} || true"
                 // Force removes the container if it exists; '|| true' prevents failure if it doesn't
             }
         }
@@ -45,7 +45,7 @@ pipeline {
         // Stage 5: Run a new container with the specified image and port mapping
         stage('Run container') {
             steps {
-                sh "docker run -p ${PORT}:${PORT} -d --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+                sh "docker run -p ${PORT}:${PORT} -d --name ${CONTAINER_NAME} ${IMAGE_NAME}:${params.TAG}"
                 // Starts the container in detached mode, binds ports, and gives it a name
             }
         }
