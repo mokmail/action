@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    envirmonent {
+    enviroment {
         IMAGE_NAME = 'flask_image'
         CONTAINER_NAME = 'flask_container'
         PORT : 5000
