@@ -13,11 +13,11 @@ pipeline {
             }
         }
 
-        // stage('Build image') {
-        //     steps {
-        //         sh " docker build -t ${IMAGE_NEMA} . "
-        //     }
-        // }
+        stage('Build image') {
+            steps {
+                sh " docker build -t ${IMAGE_NEMA} . "
+            }
+        }
         // stage('stop old container'){
         //     steps{
         //         sh " docker rm -f ${CONTAINER_NAME} || true "
