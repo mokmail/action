@@ -7,6 +7,9 @@ pipeline {
         CONTAINER_NAME = 'flask_container' // Name of the Docker container to be run
         PORT = '5006'                      // Port the container will expose
     }
+    parameters {
+        string(name: "TAG" , defaultValue: "1.0" , description :"Add a docker image tag" )
+    }
      
     stages {
         // Stage 1: Verify Docker is installed and available
@@ -26,7 +29,7 @@ pipeline {
         // Stage 3: Build the Docker image from the Dockerfile in the current directory
         stage('Build image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME} ."
+                sh "docker build -t ${IMAGE_NAME}:${pramas.TAG} ."
                 // Builds an image with the tag defined by IMAGE_NAME
             }
         }
