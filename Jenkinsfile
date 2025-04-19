@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh "sudo docker build -t ${IMAGE_NEMA} . "
+                sh "sudo docker build -t ${IMAGE_NAME} . "
             }
         }
         // stage('stop old container'){
